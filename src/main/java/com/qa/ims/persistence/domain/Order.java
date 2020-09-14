@@ -6,6 +6,7 @@ public class Order {
 	private Long customerId;
 	private Long itemId;
 	private Integer quantity;
+	private Double orderPrice;
 	
 	public Order(Long id, Long customerId, Long itemId, Integer quantity) {
 		this.setId(id);
@@ -52,6 +53,14 @@ public class Order {
 		this.quantity = quantity;
 	}
 	
+	public Double getOrderPrice() {
+		return orderPrice;
+	}
+
+	public void setOrderPrice(Double orderPrice) {
+		this.orderPrice = orderPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "Order: id=" + id + ", customerId=" + customerId + ", itemId=" + itemId + ", quantity=" + quantity;
