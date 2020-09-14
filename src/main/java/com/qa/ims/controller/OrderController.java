@@ -66,5 +66,4 @@ public class OrderController implements CrudController<Order>{
 		System.out.println("Item deleted");
 		return orderDAO.delete(id);
 	}
-
 }

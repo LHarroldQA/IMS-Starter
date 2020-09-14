@@ -131,4 +131,15 @@ public class ItemDAO implements Dao<Item>{
 		}
 		return 0;
 	}
+	
+	public int countItems() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();) {
+			return statement.executeUpdate("select count(*) from items");
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
 }

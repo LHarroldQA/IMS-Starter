@@ -130,5 +130,16 @@ public class CustomerDAO implements Dao<Customer> {
 		}
 		return 0;
 	}
+	
+	public int countCustomers() {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();) {
+			return statement.executeUpdate("select count(*) from customers");
+		} catch (Exception e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return 0;
+	}
 
 }
