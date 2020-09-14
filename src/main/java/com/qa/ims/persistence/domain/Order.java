@@ -8,6 +8,14 @@ public class Order {
 	private Integer quantity;
 	private Double orderPrice;
 	
+	public Order(Long id, Long customerId, Long itemId, Integer quantity,Double orderPrice) {
+		this.setId(id);
+		this.setCustomerId(customerId);
+		this.setItemId(itemId);
+		this.setQuantity(quantity);
+		this.setOrderPrice(orderPrice);
+	}
+	
 	public Order(Long id, Long customerId, Long itemId, Integer quantity) {
 		this.setId(id);
 		this.setCustomerId(customerId);
@@ -63,7 +71,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order: id=" + id + ", customerId=" + customerId + ", itemId=" + itemId + ", quantity=" + quantity;
+		return "Order: id=" + id + ", customerId=" + customerId + ", itemId=" + itemId + ", quantity=" + quantity + ", total price=" + orderPrice;
 	}
 
 	@Override

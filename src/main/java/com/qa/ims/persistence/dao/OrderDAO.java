@@ -24,14 +24,15 @@ public class OrderDAO implements Dao<Order>{
 		Long customerId = resultSet.getLong("customer_id");
 		Long itemId = resultSet.getLong("item_id");
 		Integer quantity = resultSet.getInt("quantity");
-		return new Order(id,customerId,itemId,quantity);
+		Double orderPrice = resultSet.getDouble("total_price");
+		return new Order(id,customerId,itemId,quantity,orderPrice);
 	}
 
 	@Override
 	public List<Order> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from orders");) {
+				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id");) {
 			List<Order> orders = new ArrayList<>();
 			while (resultSet.next()) {
 				orders.add(modelFromResultSet(resultSet));
@@ -47,7 +48,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -74,7 +75,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readOrder(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders where id = " + id);) {
+				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id where orders.id =" + id);) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
