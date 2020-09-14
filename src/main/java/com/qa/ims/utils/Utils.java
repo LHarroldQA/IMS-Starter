@@ -20,7 +20,7 @@ public class Utils {
 	}
 
 	public Long getLong() {
-		String input = getString();
+		String input = null;
 		Long longInput = null;
 		do {
 			try {
@@ -38,7 +38,7 @@ public class Utils {
 	}
 
 	public Double getDouble() {
-		String input = getString();
+		String input = null;
 		Double doubleInput = null;
 		do {
 			try {
@@ -49,6 +49,20 @@ public class Utils {
 			}
 		} while (doubleInput == null);
 		return doubleInput;
+	}
+	
+	public Integer getInt() {
+		String input = null;
+		Integer intInput = null;
+		do {
+			try {
+				input = getString();
+				intInput = Integer.parseInt(input);
+			} catch (NumberFormatException nfe) {
+				LOGGER.info("Error - Please enter a number");
+			}
+		} while (intInput == null);
+		return intInput;
 	}
 
 }
