@@ -10,3 +10,9 @@ INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Chair',99
 INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Book',14.99,'autobiography');
 INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Laptop',350.00,'MAC book');
 INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Camera',199.99,'4k 16x zoom');
+
+INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (2,4,1);
+INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (1,1,2);
+INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (5,3,10);
+INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (4,4,85);
+INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (3,5,5);
