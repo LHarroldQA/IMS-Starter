@@ -6,13 +6,23 @@ public class OrderItem {
 	private Long orderId;
 	private Long itemId;
 	private Long quantity;
+	
 	public OrderItem(Long id, Long orderId, Long itemId, Long quantity) {
 		super();
-		this.id = id;
-		this.orderId = orderId;
-		this.itemId = itemId;
-		this.quantity = quantity;
+		this.setId(id);
+		this.setOrderId(orderId);
+		this.setItemId(itemId);
+		this.setQuantity(quantity);
 	}
+	
+	public OrderItem(Long orderId, Long itemId, Long quantity) {
+		super();
+		this.setOrderId(orderId);
+		this.setItemId(itemId);
+		this.setQuantity(quantity);
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}

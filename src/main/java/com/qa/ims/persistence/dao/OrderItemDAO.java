@@ -70,7 +70,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 		return null;
 	}
 	
-	public OrderItem readOrder(Long id) {
+	public OrderItem readOrderItem(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
 				ResultSet resultSet = statement.executeQuery("select * from orderitems where id =" + id);) {
@@ -89,7 +89,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update orderitems set order_id ='" + orderItem.getOrderId() + "', item_id ='"
 					+ orderItem.getItemId() + "',quantity ="+ orderItem.getQuantity() + "'");
-			return readOrder(orderItem.getId());
+			return readOrderItem(orderItem.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
