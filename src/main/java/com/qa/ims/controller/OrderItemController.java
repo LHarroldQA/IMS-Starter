@@ -6,9 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.dao.OrderItemDAO;
-import com.qa.ims.persistence.domain.Order;
 import com.qa.ims.persistence.domain.OrderItem;
 import com.qa.ims.utils.Utils;
 
@@ -35,7 +33,6 @@ public class OrderItemController implements CrudController<OrderItem>{
 		List<OrderItem> orderItems = null;
 		switch(readChoice.toLowerCase()) {
 		case "all" :
-//			List<Order> orders = orderDAO.readAll();
 			orderItems = orderItemDAO.readAll();
 			for (OrderItem orderItem : orderItems) {
 				LOGGER.info(orderItem.toString());

@@ -47,6 +47,12 @@ public class OrderItem {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
+	
+	@Override
+	public String toString() {
+		return "OrderItem id=" + id + ", orderId=" + orderId + ", itemId=" + itemId + ", quantity=" + quantity;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
