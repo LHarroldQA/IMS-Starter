@@ -1,11 +1,13 @@
 package com.qa.ims.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.qa.ims.persistence.dao.ItemDAO;
+import com.qa.ims.persistence.domain.Customer;
 import com.qa.ims.persistence.domain.Item;
 import com.qa.ims.utils.Utils;
 
@@ -24,9 +26,29 @@ public class ItemController implements CrudController<Item> {
 
 	@Override
 	public List<Item> readAll() {
-		List<Item> items = itemDAO.readAll();
-		for (Item item : items) {
-			LOGGER.info(item.toString());
+		LOGGER.info("Would you like to read all customers or one customer?");
+		LOGGER.info("ALL: Read all customers");
+		LOGGER.info("ONE: Read one customer");
+		String readChoice = utils.getString();
+		List<Item> items = null;
+		switch(readChoice.toLowerCase()) {
+		case "all" :
+			items = itemDAO.readAll();
+			for (Item item : items) {
+				LOGGER.info(item.toString());
+			}
+			break;
+		case "one":
+			LOGGER.info("Please enter the id of the customer you want to read");
+			Long id = utils.getLong();
+			Item getItem = itemDAO.readItem(id);
+			items = new ArrayList<>();
+			items.add(getItem);
+			LOGGER.info(items.toString());
+			return items;
+		default:
+			LOGGER.info("Invalid input - please try again");
+			break;
 		}
 		return items;
 	}
