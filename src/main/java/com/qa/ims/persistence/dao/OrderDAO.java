@@ -22,17 +22,15 @@ public class OrderDAO implements Dao<Order>{
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
-		Long itemId = resultSet.getLong("item_id");
-		Integer quantity = resultSet.getInt("quantity");
-		Double orderPrice = resultSet.getDouble("total_price");
-		return new Order(id,customerId,itemId,quantity,orderPrice);
+		String address = resultSet.getString("address");
+		return new Order(id,customerId,address);
 	}
 
 	@Override
 	public List<Order> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT orders.*,ROUND(orders.quantity*items.price,2) AS total_price FROM orders JOIN items ON orders.item_id = items.id");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * from orders");) {
 			List<Order> orders = new ArrayList<>();
 			while (resultSet.next()) {
 				orders.add(modelFromResultSet(resultSet));
@@ -48,7 +46,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -62,8 +60,8 @@ public class OrderDAO implements Dao<Order>{
 	public Order create(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("INSERT INTO orders(customer_id, item_id, quantity) values('" + order.getCustomerId()
-					+ "','" + order.getItemId() + "','" +  order.getQuantity() + "')");
+			statement.executeUpdate("INSERT INTO orders(customer_id, address) values('" + order.getCustomerId()
+					+ "','" + order.getAddress() + "')");
 			return readLatest();
 		} catch (Exception e) {
 			LOGGER.debug(e);
@@ -75,7 +73,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readOrder(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id where orders.id =" + id);) {
+				ResultSet resultSet = statement.executeQuery("select * from orders where orders.id =" + id);) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -89,8 +87,8 @@ public class OrderDAO implements Dao<Order>{
 	public Order update(Order order) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
-			statement.executeUpdate("update orders set customer_id ='" + order.getCustomerId() + "', item_id ='"
-					+ order.getItemId() + "', quantity = '" + order.getQuantity() + "' where id =" + order.getId());
+			statement.executeUpdate("update orders set customer_id ='" + order.getCustomerId() + "', address ='"
+					+ order.getAddress() + "'");
 			return readOrder(order.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);

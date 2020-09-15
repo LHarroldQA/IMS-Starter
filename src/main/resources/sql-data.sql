@@ -11,14 +11,14 @@ INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Book',14.
 INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Laptop',350.00,'MAC book');
 INSERT INTO `ims`.`items` (`item_name`,`price`,`description`) VALUES ('Camera',199.99,'4k 16x zoom');
 
-INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (2,4,1);
-INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (1,1,2);
-INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (5,3,10);
-INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (4,4,85);
-INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (3,5,5);
+INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (1,1,'Essex');
+INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (2,2,'London');
+INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (3,4,'Manchester');
+INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (4,5,'Liverpool');
+INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (5,3,'Cornwall');
 
-INSERT INTO `ims`.`orderitems` VALUES (1,2);
-INSERT INTO `ims`.`orderitems` VALUES (1,4);
-INSERT INTO `ims`.`orderitems` VALUES (1,4);
-INSERT INTO `ims`.`orderitems` VALUES (5,1);
-INSERT INTO `ims`.`orderitems` VALUES (4,5);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,2,1);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,4,5);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,4,10);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (5,1,15);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (4,5,17);
