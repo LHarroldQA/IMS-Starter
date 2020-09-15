@@ -23,14 +23,16 @@ public class OrderItemDAO implements Dao<OrderItem>{
 		Long orderId = resultSet.getLong("order_id");
 		Long itemId = resultSet.getLong("item_id");
 		Long quantity = resultSet.getLong("quantity");
-		return new OrderItem(id,orderId,itemId,quantity);
+		Double orderPrice = resultSet.getDouble("order_price");
+		return new OrderItem(id,orderId,itemId,quantity,orderPrice);
 	}
 
 	@Override
 	public List<OrderItem> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * from orderitems");) {
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems join items on orderitems.item_id = items.id;");) {
+			//SELECT * from orderitems
 			List<OrderItem> orderItems = new ArrayList<>();
 			while (resultSet.next()) {
 				orderItems.add(modelFromResultSet(resultSet));
@@ -43,10 +45,29 @@ public class OrderItemDAO implements Dao<OrderItem>{
 		return new ArrayList<>();
 	}
 	
+	public List<OrderItem> readAll(Long id) {
+		try (Connection connection = DBUtils.getInstance().getConnection();
+				Statement statement = connection.createStatement();
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems "
+						+ "join items on orderitems.item_id = items.id where orderitems.order_id="+ id);) {
+			//SELECT * from orderitems
+			List<OrderItem> orderItems = new ArrayList<>();
+			while (resultSet.next()) {
+				orderItems.add(modelFromResultSet(resultSet));
+			}
+			return orderItems;
+		} catch (SQLException e) {
+			LOGGER.debug(e);
+			LOGGER.error(e.getMessage());
+		}
+		return new ArrayList<>();
+	}
 	public OrderItem readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * from orderitems ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems"
+						+ " join items on orderitems.item_id = items.id order by id desc limit 1;");) {
+			//SELECT * from orderitems ORDER BY id DESC LIMIT 1
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -73,7 +94,9 @@ public class OrderItemDAO implements Dao<OrderItem>{
 	public OrderItem readOrderItem(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select * from orderitems where id =" + id);) {
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems "
+						+ "join items on orderitems.item_id = items.id where orderitems.order_id =" + id);) {
+			//select * from orderitems where id = + id
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {

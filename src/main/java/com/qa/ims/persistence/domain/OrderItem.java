@@ -6,6 +6,16 @@ public class OrderItem {
 	private Long orderId;
 	private Long itemId;
 	private Long quantity;
+	private Double orderPrice;
+	
+	public OrderItem(Long id, Long orderId, Long itemId, Long quantity,Double orderPrice) {
+		super();
+		this.setId(id);
+		this.setOrderId(orderId);
+		this.setItemId(itemId);
+		this.setQuantity(quantity);
+		this.setOrderPrice(orderPrice);
+	}
 	
 	public OrderItem(Long id, Long orderId, Long itemId, Long quantity) {
 		super();
@@ -48,9 +58,17 @@ public class OrderItem {
 		this.quantity = quantity;
 	}
 	
+	public Double getOrderPrice() {
+		return orderPrice;
+	}
+
+	public void setOrderPrice(Double orderPrice) {
+		this.orderPrice = orderPrice;
+	}
+
 	@Override
 	public String toString() {
-		return "OrderItem id=" + id + ", orderId=" + orderId + ", itemId=" + itemId + ", quantity=" + quantity;
+		return "OrderItem= id=" + id + ", orderId=" + orderId + ", itemId=" + itemId + ", quantity=" + quantity + ", order price=" + orderPrice;
 	}
 
 	@Override
@@ -60,9 +78,11 @@ public class OrderItem {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
 		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		result = prime * result + ((orderPrice == null) ? 0 : orderPrice.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,6 +107,11 @@ public class OrderItem {
 				return false;
 		} else if (!orderId.equals(other.orderId))
 			return false;
+		if (orderPrice == null) {
+			if (other.orderPrice != null)
+				return false;
+		} else if (!orderPrice.equals(other.orderPrice))
+			return false;
 		if (quantity == null) {
 			if (other.quantity != null)
 				return false;
@@ -94,5 +119,7 @@ public class OrderItem {
 			return false;
 		return true;
 	}
+
+
 	
 }

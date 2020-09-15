@@ -1,6 +1,5 @@
 package com.qa.ims.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -41,10 +40,10 @@ public class OrderItemController implements CrudController<OrderItem>{
 		case "one":
 			LOGGER.info("Please enter the id of the order you want to read");
 			Long id = utils.getLong();
-			OrderItem getOrderItems = orderItemDAO.readOrderItem(id);
-			orderItems = new ArrayList<>();
-			orderItems.add(getOrderItems);
-			LOGGER.info(orderItems.toString());
+			orderItems = orderItemDAO.readAll(id);
+			for(OrderItem orderItem:orderItems) {
+				LOGGER.info(orderItem.toString());
+			}
 			return orderItems;
 		default:
 			LOGGER.info("Invalid input - please try again");

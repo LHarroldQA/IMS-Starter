@@ -72,15 +72,24 @@ public class IMS {
 				active = this.items;
 				break;
 			case ORDER:
-				LOGGER.info("Would you like to view the order customer details or item details? Input: 'customer' or 'item'");
+				LOGGER.info("");
+				LOGGER.info("Would you like to view the order customer details or item details? Input: 'customer' or 'item' or 'return'");
+				LOGGER.info("CUSTOMER: To see the order customer details");
+				LOGGER.info("ITEM: To see the order item details and price");
+				LOGGER.info("RETURN: To return to the CRUD menu");
 				String input = utils.getString();
-				switch(input) {
+				switch(input.toLowerCase()) {
 				case "customer":
 					active = this.orders;
+					break;
 				case "item":
 					active = this.orderItems;
+					break;
+				case "return":
+					break;
+				default:
+					break;
 				}
-				//active = this.orders;
 				break;
 			case STOP:
 				return;

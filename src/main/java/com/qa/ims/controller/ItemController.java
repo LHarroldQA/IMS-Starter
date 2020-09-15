@@ -25,9 +25,9 @@ public class ItemController implements CrudController<Item> {
 
 	@Override
 	public List<Item> readAll() {
-		LOGGER.info("Would you like to read all customers or one customer?");
-		LOGGER.info("ALL: Read all customers");
-		LOGGER.info("ONE: Read one customer");
+		LOGGER.info("Would you like to read all items or one item?");
+		LOGGER.info("ALL: Read all items");
+		LOGGER.info("ONE: Read one item");
 		String readChoice = utils.getString();
 		List<Item> items = null;
 		switch(readChoice.toLowerCase()) {
@@ -38,7 +38,7 @@ public class ItemController implements CrudController<Item> {
 			}
 			break;
 		case "one":
-			LOGGER.info("Please enter the id of the customer you want to read");
+			LOGGER.info("Please enter the id of the item you want to read");
 			Long id = utils.getLong();
 			Item getItem = itemDAO.readItem(id);
 			items = new ArrayList<>();
