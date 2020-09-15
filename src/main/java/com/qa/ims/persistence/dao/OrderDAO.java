@@ -32,7 +32,7 @@ public class OrderDAO implements Dao<Order>{
 	public List<Order> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orders.*,ROUND(orders.quantity*items.price,2) as total_price from orders join items on orders.item_id = items.id");) {
+				ResultSet resultSet = statement.executeQuery("SELECT orders.*,ROUND(orders.quantity*items.price,2) AS total_price FROM orders JOIN items ON orders.item_id = items.id");) {
 			List<Order> orders = new ArrayList<>();
 			while (resultSet.next()) {
 				orders.add(modelFromResultSet(resultSet));
