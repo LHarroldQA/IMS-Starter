@@ -16,3 +16,9 @@ INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (1,1,2);
 INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (5,3,10);
 INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (4,4,85);
 INSERT INTO `ims`.`orders` (`customer_id`,`item_id`,`quantity`) VALUES (3,5,5);
+
+INSERT INTO `ims`.`orderitems` VALUES (1,2);
+INSERT INTO `ims`.`orderitems` VALUES (1,4);
+INSERT INTO `ims`.`orderitems` VALUES (1,4);
+INSERT INTO `ims`.`orderitems` VALUES (5,1);
+INSERT INTO `ims`.`orderitems` VALUES (4,5);

@@ -23,7 +23,12 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders`(
 	FOREIGN KEY (`customer_id`) REFERENCES customers(id),
 	FOREIGN KEY (`item_id`) REFERENCES items(id)
 );
-
+CREATE TABLE IF NOT EXISTS `ims`.`orderitems`(
+	`order_id` INT(11) NOT NULL,
+	`item_id` INT(11) NOT NULL,
+	FOREIGN KEY (`order_id`) REFERENCES orders(id),
+	FOREIGN KEY (`item_id`) REFERENCES items(id)
+);
 
 
 
