@@ -46,7 +46,7 @@ public class OrderDAO implements Dao<Order>{
 	public Order readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * from order ORDER BY id DESC LIMIT 1");) {
+				ResultSet resultSet = statement.executeQuery("SELECT * from orders ORDER BY id DESC LIMIT 1");) {
 			resultSet.next();
 			return modelFromResultSet(resultSet);
 		} catch (Exception e) {
@@ -88,7 +88,7 @@ public class OrderDAO implements Dao<Order>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update orders set customer_id ='" + order.getCustomerId() + "', address ='"
-					+ order.getAddress() + "'");
+					+ order.getAddress() + "' where id =" + order.getId());
 			return readOrder(order.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);

@@ -86,9 +86,10 @@ public class IMS {
 					active = this.orderItems;
 					break;
 				case "return":
-					break;
+					return;
 				default:
-					break;
+					LOGGER.info("Invalid input");
+					return;
 				}
 				break;
 			case STOP:

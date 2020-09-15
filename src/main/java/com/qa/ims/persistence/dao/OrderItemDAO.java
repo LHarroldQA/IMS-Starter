@@ -111,7 +111,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("update orderitems set order_id ='" + orderItem.getOrderId() + "', item_id ='"
-					+ orderItem.getItemId() + "',quantity ="+ orderItem.getQuantity() + "'");
+					+ orderItem.getItemId() + "',quantity ='"+ orderItem.getQuantity() + "' where id =" + orderItem.getId());
 			return readOrderItem(orderItem.getId());
 		} catch (Exception e) {
 			LOGGER.debug(e);
