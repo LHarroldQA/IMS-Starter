@@ -48,7 +48,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 	public List<OrderItem> readAll(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems "
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((price*quantity),2) as order_price from orderitems "
 						+ "join items on orderitems.item_id = items.id where orderitems.order_id="+ id);) {
 			//SELECT * from orderitems
 			List<OrderItem> orderItems = new ArrayList<>();
