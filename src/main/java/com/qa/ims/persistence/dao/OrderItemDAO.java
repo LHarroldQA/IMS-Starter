@@ -22,16 +22,17 @@ public class OrderItemDAO implements Dao<OrderItem>{
 		Long id = resultSet.getLong("id");
 		Long orderId = resultSet.getLong("order_id");
 		Long itemId = resultSet.getLong("item_id");
+		String itemName = resultSet.getString("item_name");
 		Long quantity = resultSet.getLong("quantity");
 		Double orderPrice = resultSet.getDouble("order_price");
-		return new OrderItem(id,orderId,itemId,quantity,orderPrice);
+		return new OrderItem(id,orderId,itemId,itemName,quantity,orderPrice);
 	}
 
 	@Override
 	public List<OrderItem> readAll() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems join items on orderitems.item_id = items.id;");) {
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,items.item_name,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems join items on orderitems.item_id = items.id;");) {
 			//SELECT * from orderitems
 			List<OrderItem> orderItems = new ArrayList<>();
 			while (resultSet.next()) {

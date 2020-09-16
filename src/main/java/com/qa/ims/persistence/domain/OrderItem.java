@@ -5,14 +5,16 @@ public class OrderItem {
 	private Long id;
 	private Long orderId;
 	private Long itemId;
+	private String itemName;
 	private Long quantity;
 	private Double orderPrice;
 	
-	public OrderItem(Long id, Long orderId, Long itemId, Long quantity,Double orderPrice) {
+	public OrderItem(Long id, Long orderId, Long itemId, String itemName,Long quantity,Double orderPrice) {
 		super();
 		this.setId(id);
 		this.setOrderId(orderId);
 		this.setItemId(itemId);
+		this.setItemName(itemName);
 		this.setQuantity(quantity);
 		this.setOrderPrice(orderPrice);
 	}
@@ -51,6 +53,15 @@ public class OrderItem {
 	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
+	
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
 	public Long getQuantity() {
 		return quantity;
 	}
@@ -66,9 +77,12 @@ public class OrderItem {
 		this.orderPrice = orderPrice;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "OrderItem= id= " + id + ", orderId= " + orderId + ", itemId= " + itemId + ", quantity= " + quantity + ", order price= " + orderPrice;
+		return "OrderItem Id:" + id + "  OrderId:" + orderId + "  ItemId:" + itemId + "  ItemName:" + itemName
+				+ "  Quantity:" + quantity + "  OrderPrice:" + orderPrice;
 	}
 
 	@Override
@@ -77,6 +91,7 @@ public class OrderItem {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((itemId == null) ? 0 : itemId.hashCode());
+		result = prime * result + ((itemName == null) ? 0 : itemName.hashCode());
 		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
 		result = prime * result + ((orderPrice == null) ? 0 : orderPrice.hashCode());
 		result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
@@ -102,6 +117,11 @@ public class OrderItem {
 				return false;
 		} else if (!itemId.equals(other.itemId))
 			return false;
+		if (itemName == null) {
+			if (other.itemName != null)
+				return false;
+		} else if (!itemName.equals(other.itemName))
+			return false;
 		if (orderId == null) {
 			if (other.orderId != null)
 				return false;
@@ -119,7 +139,4 @@ public class OrderItem {
 			return false;
 		return true;
 	}
-
-
-	
 }

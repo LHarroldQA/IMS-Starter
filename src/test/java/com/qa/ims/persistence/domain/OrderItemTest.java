@@ -42,7 +42,7 @@ public class OrderItemTest {
 	
 	@Test
 	public void orderItemPriceTest() {
-		OrderItem orderItem = new OrderItem(1L,2L,3L,10L,300.0);
+		OrderItem orderItem = new OrderItem(1L,2L,3L,"Football",10L,300.0);
 		Double price = 300.0;
 		assertEquals(price,orderItem.getOrderPrice());
 	}
@@ -81,7 +81,7 @@ public class OrderItemTest {
 	
 	@Test
 	public void setOrderItemPriceTest() {
-		OrderItem orderItem = new OrderItem(1L,2L,3L,10L,300.0);
+		OrderItem orderItem = new OrderItem(1L,2L,3L,"Football",10L,300.0);
 		orderItem.setOrderPrice(150.0);
 		Double price = 150.0;
 		assertEquals(price,orderItem.getOrderPrice());
