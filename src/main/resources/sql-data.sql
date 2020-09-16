@@ -24,7 +24,7 @@ INSERT INTO `ims`.`orders` (`id`,`customer_id`,`address`) VALUES (5,3,'Cornwall'
 
 INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,2,1);
 INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,4,5);
-INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,4,10);
+INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (1,6,10);
 INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (2,9,5);
 INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (2,7,7);
 INSERT INTO `ims`.`orderitems` (`order_id`,`item_id`,`quantity`) VALUES (3,2,4);

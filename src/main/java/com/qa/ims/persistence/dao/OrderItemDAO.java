@@ -66,7 +66,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 	public OrderItem readLatest() {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems"
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,items.item_name,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems"
 						+ " join items on orderitems.item_id = items.id order by id desc limit 1;");) {
 			//SELECT * from orderitems ORDER BY id DESC LIMIT 1
 			resultSet.next();
@@ -95,7 +95,7 @@ public class OrderItemDAO implements Dao<OrderItem>{
 	public OrderItem readOrderItem(Long id) {
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("select orderitems.*,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems "
+				ResultSet resultSet = statement.executeQuery("select orderitems.*,items.item_name,ROUND((items.price*orderitems.quantity),2) as order_price from orderitems "
 						+ "join items on orderitems.item_id = items.id where orderitems.order_id =" + id);) {
 			//select * from orderitems where id = + id
 			resultSet.next();

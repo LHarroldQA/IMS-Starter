@@ -77,8 +77,6 @@ public class OrderItem {
 		this.orderPrice = orderPrice;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "OrderItem Id:" + id + "  OrderId:" + orderId + "  ItemId:" + itemId + "  ItemName:" + itemName
