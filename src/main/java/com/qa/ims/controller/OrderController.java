@@ -1,6 +1,5 @@
 package com.qa.ims.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,47 +24,20 @@ public class OrderController implements CrudController<Order>{
 
 	@Override
 	public List<Order> readAll() {
-		LOGGER.info("Would you like to read all orders or one order?");
-		LOGGER.info("ALL: Read all orders");
-		LOGGER.info("ONE: Read one order");
-		String readChoice = utils.getString();
-		List<Order> orders = null;
-		switch(readChoice.toLowerCase()) {
-		case "all" :
-//			List<Order> orders = orderDAO.readAll();
-			orders = orderDAO.readAll();
-			for (Order order : orders) {
-				LOGGER.info(order.toString());
+		List<Order> orders = orderDAO.readAll();
+		for (Order order : orders) {
+			LOGGER.info(order.toString());
 			}
-			break;
-		case "one":
-			LOGGER.info("Please enter the id of the order you want to read");
-			Long id = utils.getLong();
-			Order getOrder = orderDAO.readOrder(id);
-			orders = new ArrayList<>();
-			orders.add(getOrder);
-			LOGGER.info(orders.toString());
-			return orders;
-		default:
-			LOGGER.info("Invalid input - please try again");
-			break;
-		}
-//		List<Order> orders = orderDAO.readAll();
-//		for (Order order : orders) {
-//			LOGGER.info(order.toString());
-//		}
 		return orders;
-	}
+		}
 
 	@Override
 	public Order create() {
 		LOGGER.info("Please enter a customer id");
 		Long customerId = utils.getLong();
-		LOGGER.info("Please enter an item id");
-		Long itemId = utils.getLong();
-		LOGGER.info("Please enter a quantity");
-		Integer quantity = utils.getInt();
-		Order order = orderDAO.create(new Order(customerId,itemId,quantity));
+		LOGGER.info("Please enter an address");
+		String address = utils.getString();
+		Order order = orderDAO.create(new Order(customerId,address));
 		LOGGER.info("Item created");
 		return order;
 	}
@@ -76,11 +48,9 @@ public class OrderController implements CrudController<Order>{
 		Long id = utils.getLong();
 		LOGGER.info("Please enter a customer id");
 		Long customerId = utils.getLong();
-		LOGGER.info("Please enter an item id");
-		Long itemId = utils.getLong();
-		LOGGER.info("Please enter a quantity");
-		Integer quantity = utils.getInt();
-		Order order = orderDAO.update(new Order(id,customerId,itemId,quantity));
+		LOGGER.info("Please enter an address");
+		String address = utils.getString();
+		Order order = orderDAO.update(new Order(id,customerId,address));
 		LOGGER.info("Item Updated");
 		return order;
 	}

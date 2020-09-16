@@ -8,9 +8,11 @@ import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
 import com.qa.ims.controller.ItemController;
 import com.qa.ims.controller.OrderController;
+import com.qa.ims.controller.OrderItemController;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemDAO;
 import com.qa.ims.persistence.dao.OrderDAO;
+import com.qa.ims.persistence.dao.OrderItemDAO;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.utils.DBUtils;
 import com.qa.ims.utils.Utils;
@@ -22,6 +24,7 @@ public class IMS {
 	private final CustomerController customers;
 	private final ItemController items;
 	private final OrderController orders;
+	private final OrderItemController orderItems;
 	private final Utils utils;
 
 	public IMS() {
@@ -34,6 +37,9 @@ public class IMS {
 		
 		final OrderDAO orderDAO = new OrderDAO();
 		this.orders = new OrderController(orderDAO,utils);
+		
+		final OrderItemDAO orderItemDAO = new OrderItemDAO();
+		this.orderItems = new OrderItemController(orderItemDAO,utils);
 	}
 
 	public void imsSystem() {
@@ -66,7 +72,24 @@ public class IMS {
 				active = this.items;
 				break;
 			case ORDER:
-				active = this.orders;
+				LOGGER.info("Would you like to view the order information or the order sales details? Input: 'info' or 'sales' or 'return'");
+				LOGGER.info("INFO: To see the order information");
+				LOGGER.info("SALES: To see the order sales details");
+				LOGGER.info("RETURN: To return to the CRUD menu");
+				String input = utils.getString();
+				switch(input.toLowerCase()) {
+				case "info":
+					active = this.orders;
+					break;
+				case "sales":
+					active = this.orderItems;
+					break;
+				case "return":
+					return;
+				default:
+					LOGGER.info("Invalid input");
+					return;
+				}
 				break;
 			case STOP:
 				return;
