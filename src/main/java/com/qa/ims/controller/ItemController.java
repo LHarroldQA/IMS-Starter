@@ -25,29 +25,9 @@ public class ItemController implements CrudController<Item> {
 
 	@Override
 	public List<Item> readAll() {
-		LOGGER.info("Would you like to read all items or one item?");
-		LOGGER.info("ALL: Read all items");
-		LOGGER.info("ONE: Read one item");
-		String readChoice = utils.getString();
-		List<Item> items = null;
-		switch(readChoice.toLowerCase()) {
-		case "all" :
-			items = itemDAO.readAll();
-			for (Item item : items) {
-				LOGGER.info(item.toString());
-			}
-			break;
-		case "one":
-			LOGGER.info("Please enter the id of the item you want to read");
-			Long id = utils.getLong();
-			Item getItem = itemDAO.readItem(id);
-			items = new ArrayList<>();
-			items.add(getItem);
-			LOGGER.info(items.toString());
-			return items;
-		default:
-			LOGGER.info("Invalid input - please try again");
-			break;
+		List<Item> items = itemDAO.readAll();
+		for (Item item : items) {
+			LOGGER.info(item.toString());
 		}
 		return items;
 	}

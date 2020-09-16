@@ -32,38 +32,12 @@ public class CustomerController implements CrudController<Customer> {
 	 */
 	@Override
 	public List<Customer> readAll() {
-		LOGGER.info("Would you like to read all customers or one customer?");
-		LOGGER.info("ALL: Read all customers");
-		LOGGER.info("ONE: Read one customer");
-		String readChoice = utils.getString();
-		List<Customer> customers = null;
-		switch(readChoice.toLowerCase()) {
-		case "all" :
-			customers = customerDAO.readAll();
-			for (Customer customer : customers) {
-				LOGGER.info(customer.toString());
-			}
-			break;
-		case "one":
-			LOGGER.info("Please enter the id of the customer you want to read");
-			Long id = utils.getLong();
-			Customer getCustomer = customerDAO.readCustomer(id);
-			customers = new ArrayList<>();
-			customers.add(getCustomer);
-			LOGGER.info(customers.toString());
-			return customers;
-		default:
-			LOGGER.info("Invalid input - please try again");
-			break;
+		List<Customer> customers = customerDAO.readAll();
+		for (Customer customer : customers) {
+			LOGGER.info(customer.toString());
 		}
 		return customers;
 	}
-//		List<Customer> customers = customerDAO.readAll();
-//		for (Customer customer : customers) {
-//			LOGGER.info(customer.toString());
-//		}
-//		return customers;
-
 
 	/**
 	 * Creates a customer by taking in user input
