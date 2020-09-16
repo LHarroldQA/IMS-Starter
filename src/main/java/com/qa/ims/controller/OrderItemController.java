@@ -25,30 +25,10 @@ public class OrderItemController implements CrudController<OrderItem>{
 
 	@Override
 	public List<OrderItem> readAll() {
-		LOGGER.info("Would you like to read all orders or one order?");
-		LOGGER.info("ALL: Read all orders");
-		LOGGER.info("ONE: Read one order");
-		String readChoice = utils.getString();
-		List<OrderItem> orderItems = null;
-		switch(readChoice.toLowerCase()) {
-		case "all" :
-			orderItems = orderItemDAO.readAll();
+		List<OrderItem> orderItems = orderItemDAO.readAll();
 			for (OrderItem orderItem : orderItems) {
 				LOGGER.info(orderItem.toString());
 			}
-			break;
-		case "one":
-			LOGGER.info("Please enter the id of the order you want to read");
-			Long id = utils.getLong();
-			orderItems = orderItemDAO.readAll(id);
-			for(OrderItem orderItem:orderItems) {
-				LOGGER.info(orderItem.toString());
-			}
-			return orderItems;
-		default:
-			LOGGER.info("Invalid input - please try again");
-			break;
-		}
 		return orderItems;
 	}
 	
