@@ -75,7 +75,7 @@ public class IMS {
 				LOGGER.info("Would you like to view the order information or the order sales details? Input: 'info' or 'sales' or 'return'");
 				LOGGER.info("INFO: To see the order information");
 				LOGGER.info("SALES: To see the order sales details");
-				LOGGER.info("RETURN: To return to the CRUD menu");
+				LOGGER.info("RETURN: To return to the action menu");
 				String input = utils.getString();
 				switch(input.toLowerCase()) {
 				case "info":
