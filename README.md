@@ -1,7 +1,7 @@
 Coverage: Overall: 72.3%
           src/main/java: 59.9%
 # Inventory Managment System
-
+Part of my learning at QA academy.
 This project is an inventory management system that uses Java, Maven and SQL to CREATE, READ, UPDATE and DELETE records from database tables. The database is made up of 4 tables the CUSTOMER table is used to store infomation about the customer e.g first name, surname. The ITEM is table is used to store information about the item e.g name, price. The ORDER table stores information about the order and who is making the order e.g customerId, address. The ORDERITEM table is used to store the items that are being added to the orders.
 
 ## Getting Started
