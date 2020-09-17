@@ -66,5 +66,3 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 *For help in [Choosing a license](https://choosealicense.com/)*
 
 ## Acknowledgments
-
-Jordan Harrison
