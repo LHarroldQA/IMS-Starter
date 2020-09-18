@@ -31,16 +31,9 @@ Say you entered "John" and then "Smith" and there is already one customer in the
 You can repeat these steps for the other tables. 
 
 ## Running the tests
-
-The tests for this program are run using Junit. Junit can be accessed be adding the dependancy withim the pom.xml file. The tests are used to test the functionality of the Domain, DAO and Controller classes. However, as we have not come across Mockito yet the tests for the controllers are limited. The Junit tests use functions such as assertEquals and EqualsVerifier. These tests are implemented to ensure that all of the classes and methods are given the expected output and if they're not then we can use them to find and debug issues within the code.
-
 ### Unit Tests 
 
-
-### Integration Tests 
-
-
-### And coding style tests
+The tests for this program are run using Junit. Junit can be accessed be adding the dependancy withim the pom.xml file. The tests are used to test the functionality of the Domain, DAO and Controller classes. However, as we have not come across Mockito yet the tests for the controllers are limited. The Junit tests use functions such as assertEquals and EqualsVerifier. These tests are implemented to ensure that all of the classes and methods are given the expected output and if they're not then we can use them to find and debug issues within the code.
 
 ## Deployment
 
